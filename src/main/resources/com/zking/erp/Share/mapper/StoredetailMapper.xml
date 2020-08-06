@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.StoredetailMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Storedetail">
+    <constructor>
+      <idArg column="storedetailId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="storeId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    storedetailId, storeId, gId, sNum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from storedetail
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from storedetail
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Storedetail">
+    insert into storedetail (storedetailId, storeId, gId, 
+      sNum)
+    values (#{storedetailid,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+      #{snum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Storedetail">
+    insert into storedetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storedetailid != null">
+        storedetailId,
+      </if>
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="gid != null">
+        gId,
+      </if>
+      <if test="snum != null">
+        sNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storedetailid != null">
+        #{storedetailid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="snum != null">
+        #{snum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Storedetail">
+    update storedetail
+    <set>
+      <if test="storeid != null">
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        gId = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="snum != null">
+        sNum = #{snum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Storedetail">
+    update storedetail
+    set storeId = #{storeid,jdbcType=INTEGER},
+      gId = #{gid,jdbcType=INTEGER},
+      sNum = #{snum,jdbcType=INTEGER}
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zking.erp.model.Storedetail">
+    <constructor>
+      <idArg column="storedetailId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="storeId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    storedetailId, storeId, gId, sNum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from storedetail
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from storedetail
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.model.Storedetail">
+    insert into storedetail (storedetailId, storeId, gId, 
+      sNum)
+    values (#{storedetailid,jdbcType=INTEGER}, #{storeid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+      #{snum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.model.Storedetail">
+    insert into storedetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storedetailid != null">
+        storedetailId,
+      </if>
+      <if test="storeid != null">
+        storeId,
+      </if>
+      <if test="gid != null">
+        gId,
+      </if>
+      <if test="snum != null">
+        sNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storedetailid != null">
+        #{storedetailid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null">
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="snum != null">
+        #{snum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Storedetail">
+    update storedetail
+    <set>
+      <if test="storeid != null">
+        storeId = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        gId = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="snum != null">
+        sNum = #{snum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Storedetail">
+    update storedetail
+    set storeId = #{storeid,jdbcType=INTEGER},
+      gId = #{gid,jdbcType=INTEGER},
+      sNum = #{snum,jdbcType=INTEGER}
+    where storedetailId = #{storedetailid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.DepMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Dep">
+    <constructor>
+      <idArg column="dId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dTel" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    dId, dName, dTel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dep
+    where dId = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dep
+    where dId = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Dep">
+    insert into dep (dId, dName, dTel
+      )
+    values (#{did,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{dtel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Dep">
+    insert into dep
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        dId,
+      </if>
+      <if test="dname != null">
+        dName,
+      </if>
+      <if test="dtel != null">
+        dTel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null">
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtel != null">
+        #{dtel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Dep">
+    update dep
+    <set>
+      <if test="dname != null">
+        dName = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtel != null">
+        dTel = #{dtel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dId = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Dep">
+    update dep
+    set dName = #{dname,jdbcType=VARCHAR},
+      dTel = #{dtel,jdbcType=VARCHAR}
+    where dId = #{did,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zking.erp.model.Dep">
+    <constructor>
+      <idArg column="dId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dTel" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    dId, dName, dTel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dep
+    where dId = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dep
+    where dId = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.model.Dep">
+    insert into dep (dId, dName, dTel
+      )
+    values (#{did,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{dtel,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.model.Dep">
+    insert into dep
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        dId,
+      </if>
+      <if test="dname != null">
+        dName,
+      </if>
+      <if test="dtel != null">
+        dTel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="dname != null">
+        #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtel != null">
+        #{dtel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Dep">
+    update dep
+    <set>
+      <if test="dname != null">
+        dName = #{dname,jdbcType=VARCHAR},
+      </if>
+      <if test="dtel != null">
+        dTel = #{dtel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dId = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Dep">
+    update dep
+    set dName = #{dname,jdbcType=VARCHAR},
+      dTel = #{dtel,jdbcType=VARCHAR}
+    where dId = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>
