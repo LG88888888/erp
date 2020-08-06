@@ -1,4 +1,4 @@
-package com.zking.erp.util;
+package com.zking.erp.orders.util;
 
 import java.io.Serializable;
 import java.util.Map;
