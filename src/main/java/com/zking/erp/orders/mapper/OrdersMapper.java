@@ -1,12 +1,12 @@
-package com.zking.erp.orders.service;
+package com.zking.erp.orders.mapper;
 
 import com.zking.erp.orders.model.Orders;
-import com.zking.erp.util.PageBean;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
-public interface IOrdersService {
+@Repository
+public interface OrdersMapper {
     int deleteByPrimaryKey(Integer oid);
 
     int insert(Orders record);
@@ -18,7 +18,6 @@ public interface IOrdersService {
 
     int updateByPrimaryKey(Orders record);
 
-
-    List<Orders> queryOrdersPager(Orders orders, PageBean pageBean);
+    List<Orders> queryOrdersPager(Orders record);
 
 }

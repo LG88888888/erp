@@ -1,11 +1,13 @@
-package com.zking.erp.orders.service;
+package com.zking.erp.orders.mapper;
 
 import com.zking.erp.orders.model.OrderDetail;
+import com.zking.erp.orders.model.Orders;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface IOrderDetailService {
+@Repository
+public interface OrderDetailMapper {
     int deleteByPrimaryKey(Integer orderdetailid);
 
     int insert(OrderDetail record);

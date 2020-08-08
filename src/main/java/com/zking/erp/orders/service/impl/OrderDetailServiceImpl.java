@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class OrderDetailServiceImpl implements IOrderDetailService {
@@ -21,14 +22,7 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
 
     @Override
     public int insert(OrderDetail record) {
-        record.setOendtime(new Date());
         return orderDetailMapper.insert(record);
-    }
-
-    @Override
-    public int insertSelective(OrderDetail record) {
-        record.setOendtime(new Date());
-        return orderDetailMapper.insertSelective(record);
     }
 
     @Override
@@ -37,14 +31,14 @@ public class OrderDetailServiceImpl implements IOrderDetailService {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(OrderDetail record) {
-        record.setOendtime(new Date());
-        return orderDetailMapper.updateByPrimaryKeySelective(record);
+    public int updateByPrimaryKey(OrderDetail record) {
+        return orderDetailMapper.updateByPrimaryKey(record);
     }
 
     @Override
-    public int updateByPrimaryKey(OrderDetail record) {
-        record.setOendtime(new Date());
-        return orderDetailMapper.updateByPrimaryKey(record);
+    public List<OrderDetail> queryOrdersPager(OrderDetail orderDetail) {
+        return orderDetailMapper.queryOrdersPager(orderDetail);
     }
+
+
 }
