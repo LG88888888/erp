@@ -1,7 +1,10 @@
 package com.zking.erp.Share.mapper;
 
 import com.zking.erp.Share.model.Emp;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface EmpMapper {
     int deleteByPrimaryKey(Integer eid);
 
@@ -14,4 +17,6 @@ public interface EmpMapper {
     int updateByPrimaryKeySelective(Emp record);
 
     int updateByPrimaryKey(Emp record);
+
+    Emp queryEmp(@Param("emp") Emp emp);
 }

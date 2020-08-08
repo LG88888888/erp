@@ -1,12 +1,11 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Erpright;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
-public interface ErprightMapper {
+
+public interface IErprightService {
     int deleteByPrimaryKey(String rcode);
 
     int insert(Erpright record);
@@ -19,12 +18,8 @@ public interface ErprightMapper {
 
     int updateByPrimaryKey(Erpright record);
 
-    List<Erpright>queryCode(@Param("pid") Integer pid);
+    List<Erpright>queryCode(Integer pid);
 
     List<Erpright> queryRootNode(@Param("rid") Integer rid);
-    List<Erpright> queryErprightByPid(@Param("pid") String pid ,@Param("rid") Integer rid);
-
-
-
 
 }

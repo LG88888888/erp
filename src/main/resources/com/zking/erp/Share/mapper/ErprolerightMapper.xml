@@ -52,7 +52,13 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erproleright">
+    <insert id="addRoleRight" parameterType="java.util.List">
+        insert into erproleright(rId,rCode) values
+      <foreach collection="rolerights" item="roleright" index="index" separator=",">
+                  (#{rolerights.rid}, #{rolerights.rcode})
+      </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erproleright">
     update erproleright
     <set>
       <if test="rid != null">
@@ -70,73 +76,5 @@
       rCode = #{rcode,jdbcType=VARCHAR}
     where rfId = #{rfid,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="com.zking.erp.model.Erproleright">
-    <constructor>
-      <idArg column="rfId" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="rId" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="rCode" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
-    rfId, rId, rCode
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from erproleright
-    where rfId = #{rfid,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from erproleright
-    where rfId = #{rfid,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.zking.erp.model.Erproleright">
-    insert into erproleright (rfId, rId, rCode
-      )
-    values (#{rfid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT}, #{rcode,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.zking.erp.model.Erproleright">
-    insert into erproleright
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="rfid != null">
-        rfId,
-      </if>
-      <if test="rid != null">
-        rId,
-      </if>
-      <if test="rcode != null">
-        rCode,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="rfid != null">
-        #{rfid,jdbcType=BIGINT},
-      </if>
-      <if test="rid != null">
-        #{rid,jdbcType=BIGINT},
-      </if>
-      <if test="rcode != null">
-        #{rcode,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.model.Erproleright">
-    update erproleright
-    <set>
-      <if test="rid != null">
-        rId = #{rid,jdbcType=BIGINT},
-      </if>
-      <if test="rcode != null">
-        rCode = #{rcode,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where rfId = #{rfid,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zking.erp.model.Erproleright">
-    update erproleright
-    set rId = #{rid,jdbcType=BIGINT},
-      rCode = #{rcode,jdbcType=VARCHAR}
-    where rfId = #{rfid,jdbcType=BIGINT}
-  </update>
+
 </mapper>

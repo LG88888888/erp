@@ -1,8 +1,8 @@
-package com.zking.erp.permissions.service.impl;
+package com.zking.erp.Share.service.impl;
 
-import com.zking.erp.permissions.mapper.EmpMapper;
-import com.zking.erp.permissions.model.Emp;
-import com.zking.erp.permissions.service.IEmpService;
+import com.zking.erp.Share.mapper.EmpMapper;
+import com.zking.erp.Share.model.Emp;
+import com.zking.erp.Share.service.IEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +43,5 @@ public class EmpServiceImpl implements IEmpService {
     @Override
     public Emp queryEmp(Emp emp) {
         return empMapper.queryEmp(emp);
-
-
     }
 }

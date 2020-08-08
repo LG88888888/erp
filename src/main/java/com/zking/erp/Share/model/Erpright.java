@@ -1,5 +1,8 @@
 package com.zking.erp.Share.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Erpright {
     private String rcode;
 
@@ -13,18 +16,30 @@ public class Erpright {
 
     private String rtip;
 
-    public Erpright(String rcode, String rparentcode, String rtype, String rtext, String rurl, String rtip) {
+   List<Erpright>erprights=new ArrayList<Erpright>();
+
+    public List<Erpright> getErprights() {
+        return erprights;
+    }
+
+    public void setErprights(List<Erpright> erprights) {
+        this.erprights = erprights;
+    }
+
+    public Erpright(String rcode, String rparentcode, String rtype, String rtext, String rurl, String rtip,  List<Erpright> erprights) {
         this.rcode = rcode;
         this.rparentcode = rparentcode;
         this.rtype = rtype;
         this.rtext = rtext;
         this.rurl = rurl;
         this.rtip = rtip;
+        this.erprights=erprights;
     }
 
     public Erpright() {
         super();
     }
+
 
     public String getRcode() {
         return rcode;
@@ -73,4 +88,5 @@ public class Erpright {
     public void setRtip(String rtip) {
         this.rtip = rtip;
     }
+
 }
