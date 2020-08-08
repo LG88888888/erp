@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.ErprightMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Erpright">
+    <constructor>
+      <idArg column="rCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rParentCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rType" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rText" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rTip" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="getSelf" type="com.zking.erp.Share.model.Erpright">
+    <id column="rCode" property="rcode"></id>
+    <result column="rparentcode" property="rparentcode"></result>
+    <result column="rtype" property="rtype"></result>
+    <result column="rtext" property="rtext"></result>
+    <result column="rurl" property="rurl"></result>
+    <result column="rtip" property="rtip"></result>
+    <collection property="erprights" select="queryCode" column="rCode"></collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    rCode, rParentCode, rType, rText, rUrl, rTip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erpright
+    where rCode = #{rcode,jdbcType=VARCHAR}
+  </select>
+    <select id="queryCode" resultMap="getSelf">
+    select * from erpright where rparentcode=#{pid}
+
+    </select>
+  <select id="queryRootNode" resultType="com.zking.erp.Share.model.Erpright">
+    select er.rCode,er.rParentCode,er.rType,er.rText,er.rUrl,er.rTip
+    from
+    erproleright err,erpright er
+    where err.rCode=er.rCode
+    and err.rid=#{rid}
+    and er.rParentCode=-1
+  </select>
+  <select id="queryErprightByPid" resultType="com.zking.erp.Share.model.Erpright">
+select er.rCode,er.rParentCode,er.rType,er.rText,er.rUrl,er.rTip
+from
+erproleright err,erpright er
+where err.rCode=er.rCode
+and err.rid=#{rid}
+and er.rParentCode=#{pid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from erpright
+    where rCode = #{rcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Erpright">
+    insert into erpright (rCode, rParentCode, rType, 
+      rText, rUrl, rTip)
+    values (#{rcode,jdbcType=VARCHAR}, #{rparentcode,jdbcType=VARCHAR}, #{rtype,jdbcType=VARCHAR}, 
+      #{rtext,jdbcType=VARCHAR}, #{rurl,jdbcType=VARCHAR}, #{rtip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Erpright">
+    insert into erpright
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rcode != null">
+        rCode,
+      </if>
+      <if test="rparentcode != null">
+        rParentCode,
+      </if>
+      <if test="rtype != null">
+        rType,
+      </if>
+      <if test="rtext != null">
+        rText,
+      </if>
+      <if test="rurl != null">
+        rUrl,
+      </if>
+      <if test="rtip != null">
+        rTip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rcode != null">
+        #{rcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rparentcode != null">
+        #{rparentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtype != null">
+        #{rtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rtext != null">
+        #{rtext,jdbcType=VARCHAR},
+      </if>
+      <if test="rurl != null">
+        #{rurl,jdbcType=VARCHAR},
+      </if>
+      <if test="rtip != null">
+        #{rtip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erpright">
+    update erpright
+    <set>
+      <if test="rparentcode != null">
+        rParentCode = #{rparentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rtype != null">
+        rType = #{rtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rtext != null">
+        rText = #{rtext,jdbcType=VARCHAR},
+      </if>
+      <if test="rurl != null">
+        rUrl = #{rurl,jdbcType=VARCHAR},
+      </if>
+      <if test="rtip != null">
+        rTip = #{rtip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rCode = #{rcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Erpright">
+    update erpright
+    set rParentCode = #{rparentcode,jdbcType=VARCHAR},
+      rType = #{rtype,jdbcType=VARCHAR},
+      rText = #{rtext,jdbcType=VARCHAR},
+      rUrl = #{rurl,jdbcType=VARCHAR},
+      rTip = #{rtip,jdbcType=VARCHAR}
+    where rCode = #{rcode,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.SupplierMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Supplier">
+    <constructor>
+      <idArg column="supplierId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="suName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sAddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sContact" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sTel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sEmail" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sType" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    supplierId, suName, sAddress, sContact, sTel, sEmail, sType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supplier
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Supplier">
+    insert into supplier (supplierId, suName, sAddress, 
+      sContact, sTel, sEmail, 
+      sType)
+    values (#{supplierid,jdbcType=INTEGER}, #{suname,jdbcType=VARCHAR}, #{saddress,jdbcType=VARCHAR}, 
+      #{scontact,jdbcType=VARCHAR}, #{stel,jdbcType=VARCHAR}, #{semail,jdbcType=VARCHAR}, 
+      #{stype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Supplier">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierid != null">
+        supplierId,
+      </if>
+      <if test="suname != null">
+        suName,
+      </if>
+      <if test="saddress != null">
+        sAddress,
+      </if>
+      <if test="scontact != null">
+        sContact,
+      </if>
+      <if test="stel != null">
+        sTel,
+      </if>
+      <if test="semail != null">
+        sEmail,
+      </if>
+      <if test="stype != null">
+        sType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="suname != null">
+        #{suname,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null">
+        #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scontact != null">
+        #{scontact,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null">
+        #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null">
+        #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="stype != null">
+        #{stype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Supplier">
+    update supplier
+    <set>
+      <if test="suname != null">
+        suName = #{suname,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null">
+        sAddress = #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scontact != null">
+        sContact = #{scontact,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null">
+        sTel = #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null">
+        sEmail = #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="stype != null">
+        sType = #{stype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Supplier">
+    update supplier
+    set suName = #{suname,jdbcType=VARCHAR},
+      sAddress = #{saddress,jdbcType=VARCHAR},
+      sContact = #{scontact,jdbcType=VARCHAR},
+      sTel = #{stel,jdbcType=VARCHAR},
+      sEmail = #{semail,jdbcType=VARCHAR},
+      sType = #{stype,jdbcType=VARCHAR}
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </update>
+
+</mapper>

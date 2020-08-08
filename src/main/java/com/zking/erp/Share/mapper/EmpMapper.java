@@ -1,10 +1,11 @@
-package com.zking.erp.permissions.service;
+package com.zking.erp.Share.mapper;
 
-import com.zking.erp.permissions.model.Emp;
+import com.zking.erp.Share.model.Emp;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-public interface IEmpService {
+@Repository
+public interface EmpMapper {
     int deleteByPrimaryKey(Integer eid);
 
     int insert(Emp record);
@@ -17,5 +18,5 @@ public interface IEmpService {
 
     int updateByPrimaryKey(Emp record);
 
-    Emp  queryEmp(@Param("emp") Emp emp);
+    Emp queryEmp(@Param("emp") Emp emp);
 }

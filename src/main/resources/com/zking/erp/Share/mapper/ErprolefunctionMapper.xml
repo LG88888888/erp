@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.ErprolefunctionMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Erprolefunction">
+    <constructor>
+      <idArg column="rfId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="rID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="fID" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    rfId, rID, fID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erprolefunction
+    where rfId = #{rfid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from erprolefunction
+    where rfId = #{rfid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Erprolefunction">
+    insert into erprolefunction (rfId, rID, fID)
+    values (#{rfid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT}, #{fid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Erprolefunction">
+    insert into erprolefunction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rfid != null">
+        rfId,
+      </if>
+      <if test="rid != null">
+        rID,
+      </if>
+      <if test="fid != null">
+        fID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rfid != null">
+        #{rfid,jdbcType=BIGINT},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erprolefunction">
+    update erprolefunction
+    <set>
+      <if test="rid != null">
+        rID = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="fid != null">
+        fID = #{fid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rfId = #{rfid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Erprolefunction">
+    update erprolefunction
+    set rID = #{rid,jdbcType=BIGINT},
+      fID = #{fid,jdbcType=BIGINT}
+    where rfId = #{rfid,jdbcType=BIGINT}
+  </update>
+
+</mapper>

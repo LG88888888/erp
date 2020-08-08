@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zking.erp.Share.mapper.ErproleMapper">
+  <resultMap id="BaseResultMap" type="com.zking.erp.Share.model.Erprole">
+    <constructor>
+      <idArg column="rId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="rName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rDesc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rFlag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    rId, rName, rDesc, rFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from erprole
+    where rId = #{rid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from erprole
+    where rId = #{rid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.erp.Share.model.Erprole">
+    insert into erprole (rId, rName, rDesc, 
+      rFlag)
+    values (#{rid,jdbcType=BIGINT}, #{rname,jdbcType=VARCHAR}, #{rdesc,jdbcType=VARCHAR}, 
+      #{rflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Erprole">
+    insert into erprole
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        rId,
+      </if>
+      <if test="rname != null">
+        rName,
+      </if>
+      <if test="rdesc != null">
+        rDesc,
+      </if>
+      <if test="rflag != null">
+        rFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="rname != null">
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdesc != null">
+        #{rdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rflag != null">
+        #{rflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erprole">
+    update erprole
+    <set>
+      <if test="rname != null">
+        rName = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdesc != null">
+        rDesc = #{rdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rflag != null">
+        rFlag = #{rflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rId = #{rid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Erprole">
+    update erprole
+    set rName = #{rname,jdbcType=VARCHAR},
+      rDesc = #{rdesc,jdbcType=VARCHAR},
+      rFlag = #{rflag,jdbcType=INTEGER}
+    where rId = #{rid,jdbcType=BIGINT}
+  </update>
+
+</mapper>
