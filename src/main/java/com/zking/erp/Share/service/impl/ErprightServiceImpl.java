@@ -57,4 +57,9 @@ public class ErprightServiceImpl implements IErprightService {
 
         return erprights;
     }
+
+    @Override
+    public List<Erpright> queryRoleRight(Integer rid) {
+        return erprightMapper.queryRoleRight(rid);
+    }
 }

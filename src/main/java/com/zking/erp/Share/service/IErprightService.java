@@ -22,4 +22,5 @@ public interface IErprightService {
 
     List<Erpright> queryRootNode(@Param("rid") Integer rid);
 
+    List<Erpright> queryRoleRight(@Param("rid") Integer rid);
 }

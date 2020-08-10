@@ -18,14 +18,17 @@
     from erprole
     where rId = #{rid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="queryRole" resultType="com.zking.erp.Share.model.Erprole">
+      select <include refid="Base_Column_List"/> from erprole
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from erprole
     where rId = #{rid,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Erprole">
-    insert into erprole (rId, rName, rDesc, 
+    insert into erprole (rName, rDesc,
       rFlag)
-    values (#{rid,jdbcType=BIGINT}, #{rname,jdbcType=VARCHAR}, #{rdesc,jdbcType=VARCHAR}, 
+    values (#{rname,jdbcType=VARCHAR}, #{rdesc,jdbcType=VARCHAR},
       #{rflag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Erprole">
@@ -76,9 +79,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zking.erp.Share.model.Erprole">
     update erprole
-    set rName = #{rname,jdbcType=VARCHAR},
-      rDesc = #{rdesc,jdbcType=VARCHAR},
-      rFlag = #{rflag,jdbcType=INTEGER}
+    set rName = #{rname,jdbcType=VARCHAR}
+
     where rId = #{rid,jdbcType=BIGINT}
   </update>
 

@@ -4,6 +4,9 @@ import com.zking.erp.Share.model.Emp;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public interface EmpMapper {
     int deleteByPrimaryKey(Integer eid);
@@ -19,4 +22,6 @@ public interface EmpMapper {
     int updateByPrimaryKey(Emp record);
 
     Emp queryEmp(@Param("emp") Emp emp);
+
+    List<Map<String,Object>>query(@Param("username") String username);
 }

@@ -1,12 +1,13 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Erproleright;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
-public interface ErprolerightMapper {
+
+
+public interface IErprolerightService {
     int deleteByPrimaryKey(Long rfid);
 
     int insert(Erproleright record);
@@ -19,7 +20,5 @@ public interface ErprolerightMapper {
 
     int updateByPrimaryKey(Erproleright record);
 
-    int addRoleRight(@Param("rolerights")Erproleright roleright);
-
-    int deleteRoleRight(@Param("rid")Long rid);
+    int addRoleRight(Erproleright roleright);
 }
