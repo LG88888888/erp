@@ -68,7 +68,7 @@ public class OrdersConreoller {
         List<Orders> rows = ordersService.queryOrdersPager(orders, pageBean);
         Map<String,Object> map=new HashMap<>();
         map.put("rows",rows);
-        map.put("pageBean",pageBean);
+        map.put("total", pageBean.getTotal());
         return map;
     }
 
