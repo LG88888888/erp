@@ -49,6 +49,14 @@ where err.rCode=er.rCode
 and err.rid=#{rid}
 and er.rParentCode=#{pid}
   </select>
+  <select id="queryRoleRight" resultType="String">
+    select er.rCode
+    from
+    erproleright err,erpright er
+    where err.rCode=er.rCode
+    and err.rid=#{rid}
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from erpright
     where rCode = #{rcode,jdbcType=VARCHAR}

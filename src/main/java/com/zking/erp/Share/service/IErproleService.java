@@ -1,11 +1,10 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Erprole;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
-public interface ErproleMapper {
+
+public interface IErproleService {
     int deleteByPrimaryKey(Long rid);
 
     int insert(Erprole record);

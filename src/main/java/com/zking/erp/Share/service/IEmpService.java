@@ -3,6 +3,9 @@ package com.zking.erp.Share.service;
 import com.zking.erp.Share.model.Emp;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IEmpService {
     int deleteByPrimaryKey(Integer eid);
 
@@ -17,4 +20,5 @@ public interface IEmpService {
     int updateByPrimaryKey(Emp record);
 
     Emp queryEmp(@Param("emp") Emp emp);
+    List<Map<String,Object>> query(String  username);
 }

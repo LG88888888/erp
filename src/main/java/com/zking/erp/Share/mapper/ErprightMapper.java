@@ -24,7 +24,7 @@ public interface ErprightMapper {
     List<Erpright> queryRootNode(@Param("rid") Integer rid);
     List<Erpright> queryErprightByPid(@Param("pid") String pid ,@Param("rid") Integer rid);
 
-
+    List<Erpright> queryRoleRight(@Param("rid") Integer rid);
 
 
 }

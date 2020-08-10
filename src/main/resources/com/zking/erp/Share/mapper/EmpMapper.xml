@@ -16,6 +16,31 @@
       <arg column="rId" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
+  
+  <resultMap id="map" type="com.zking.erp.Share.model.Emp">
+    <id column="eId" property="eid"/>
+    <result column="userName" property="username"/>
+    <result column="pwd" property="pwd"/>
+    <result column="eName" property="ename"/>
+    <result column="eSex" property="esex"/>
+    <result column="email" property="email"/>
+    <result column="eTel" property="etel"/>
+    <result column="eAddress" property="eaddress"/>
+    <result column="eBirthday" property="ebirthday"/>
+    <result column="dId" property="did"/>
+    <result column="rId" property="rid"/>
+    <collection property="dep" ofType="com.zking.erp.Share.model.Dep">
+      <id column="dId" property="did"/>
+      <result column="dName" property="dname"/>
+      <result column="dTel" property="dtel"/>
+    </collection>
+    <collection property="erprole" ofType="com.zking.erp.Share.model.Erprole">
+      <id column="rId" property="rid"/>
+      <result column="rName" property="rname"/>
+      <result column="rDesc" property="rdesc"/>
+      <result column="rFlag" property="rflag"/>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List">
     eId, userName, pwd, eName, eSex, email, eTel, eAddress, eBirthday, dId, rId
   </sql>
@@ -27,6 +52,14 @@
   </select>
   <select id="queryEmp" resultType="com.zking.erp.Share.model.Emp">
     select  <include refid="Base_Column_List"/> from emp where userName=#{emp.username} and pwd=#{emp.pwd}
+  </select>
+  <select id="query"  resultType="map">
+    select *from emp e, erprole er, dep d  where e.rid=er.rid and e.dId=d.dId
+
+      <if test="username != null">
+      and   userName like'%${username}%'
+      </if>
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from emp

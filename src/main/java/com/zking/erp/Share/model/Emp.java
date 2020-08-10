@@ -25,6 +25,25 @@ public class Emp {
 
     private Integer rid;
 
+    private Dep dep;
+    private Erprole erprole;
+
+    public Dep getDep() {
+        return dep;
+    }
+
+    public void setDep(Dep dep) {
+        this.dep = dep;
+    }
+
+    public Erprole getErprole() {
+        return erprole;
+    }
+
+    public void setErprole(Erprole erprole) {
+        this.erprole = erprole;
+    }
+
     public Emp(Integer eid, String username, String pwd, String ename, String esex, String email, String etel, String eaddress, Date ebirthday, Integer did, Integer rid) {
         this.eid = eid;
         this.username = username;

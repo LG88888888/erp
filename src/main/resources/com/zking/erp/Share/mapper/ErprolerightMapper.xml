@@ -21,6 +21,10 @@
     delete from erproleright
     where rfId = #{rfid,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteRoleRight">
+    delete  from erproleright where rId=#{rid}
+
+  </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Erproleright">
     insert into erproleright (rfId, rId, rCode
       )
@@ -54,8 +58,8 @@
   </insert>
     <insert id="addRoleRight" parameterType="java.util.List">
         insert into erproleright(rId,rCode) values
-      <foreach collection="rolerights" item="roleright" index="index" separator=",">
-                  (#{rolerights.rid}, #{rolerights.rcode})
+      <foreach collection="rolerights.rcode.split(',')" item="roleright" index="index" separator=",">
+      (#{rolerights.rid}, #{roleright})
       </foreach>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.zking.erp.Share.model.Erproleright">
