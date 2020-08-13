@@ -6,10 +6,11 @@
       <idArg column="storeId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="stName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="eId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stAddress" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    storeId, stName, eId
+    storeId, stName, eId,stAddress
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -17,14 +18,27 @@
     from store
     where storeId = #{storeid,jdbcType=INTEGER}
   </select>
+  <select id="queryStorePager" resultType="java.util.Map">
+    select *from store s,erprole e where s.eId=e.rId
+    <if test="store.stname !=null">
+      and  s.stName  like'%${store.stname}%'
+    </if>
+    <if test="store.eid !=null">
+      and s.eId=#{store.eid}
+    </if>
+    <if test="store.staddress !=null ">
+      and s.stAddress like'%${store.staddress}%'
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from store
     where storeId = #{storeid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Store">
-    insert into store (storeId, stName, eId
+    insert into store ( stName, eId,stAddress
       )
-    values (#{storeid,jdbcType=INTEGER}, #{stname,jdbcType=VARCHAR}, #{eid,jdbcType=INTEGER}
+    values (#{stname,jdbcType=VARCHAR}, #{eid,jdbcType=INTEGER},#{staddress,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Store">
@@ -60,6 +74,9 @@
       </if>
       <if test="eid != null">
         eId = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="staddress != null">
+        stAddress = #{staddress,jdbcType=VARCHAR},
       </if>
     </set>
     where storeId = #{storeid,jdbcType=INTEGER}

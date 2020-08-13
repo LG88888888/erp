@@ -7,10 +7,21 @@ public class Store {
 
     private Integer eid;
 
-    public Store(Integer storeid, String stname, Integer eid) {
+    private  String staddress;
+
+    public String getStaddress() {
+        return staddress;
+    }
+
+    public void setStaddress(String staddress) {
+        this.staddress = staddress;
+    }
+
+    public Store(Integer storeid, String stname, Integer eid,String staddress) {
         this.storeid = storeid;
         this.stname = stname;
         this.eid = eid;
+        this.staddress=staddress;
     }
 
     public Store() {

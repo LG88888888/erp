@@ -1,13 +1,13 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Supplier;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-@Repository
-public interface SupplierMapper {
+
+public interface ISupplierService {
     int deleteByPrimaryKey(Integer supplierid);
 
     int insert(Supplier record);
@@ -20,9 +20,9 @@ public interface SupplierMapper {
 
     int updateByPrimaryKey(Supplier record);
 
-    List<Map<String,Object>>querySupplierPager(@Param("supplier") Supplier supplier);
-    List<Map<String,Object>>queryCustomerPager(@Param("supplier") Supplier supplier);
+    List<Map<String,Object>>querySupplierPager(Supplier supplier, PageBean pageBean);
 
-    Supplier  querySige(@Param("name")String name);
+    List<Map<String,Object>>queryCustomerPager( Supplier supplier,PageBean pageBean);
 
+    Supplier querySige(String name);
 }

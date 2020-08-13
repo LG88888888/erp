@@ -3,6 +3,7 @@ package com.zking.erp.Share.service.impl;
 import com.zking.erp.Share.mapper.EmpMapper;
 import com.zking.erp.Share.model.Emp;
 import com.zking.erp.Share.service.IEmpService;
+import com.zking.erp.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class EmpServiceImpl implements IEmpService {
 
     @Override
     public int updateByPrimaryKeySelective(Emp record) {
-        return 0;
+        return empMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class EmpServiceImpl implements IEmpService {
     }
 
     @Override
-    public List<Map<String, Object>> query(String username) {
-        return empMapper.query(username);
+    public List<Map<String, Object>> queryEmpPager(String username, PageBean pageBean) {
+        return empMapper.queryEmpPager(username);
     }
 }

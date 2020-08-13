@@ -53,8 +53,8 @@
   <select id="queryEmp" resultType="com.zking.erp.Share.model.Emp">
     select  <include refid="Base_Column_List"/> from emp where userName=#{emp.username} and pwd=#{emp.pwd}
   </select>
-  <select id="query"  resultType="map">
-    select *from emp e, erprole er, dep d  where e.rid=er.rid and e.dId=d.dId
+  <select id="queryEmpPager"  resultType="map">
+    select * from emp e, erprole er, dep d  where e.rid=er.rid and e.dId=d.dId
 
       <if test="username != null">
       and   userName like'%${username}%'

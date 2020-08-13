@@ -1,14 +1,13 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Store;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
-@Repository
-public interface StoreMapper {
+public interface IStoreService {
     int deleteByPrimaryKey(Integer storeid);
 
     int insert(Store record);
@@ -21,5 +20,5 @@ public interface StoreMapper {
 
     int updateByPrimaryKey(Store record);
 
-    List<Map<String,Object>>queryStorePager(@Param("store") Store store);
+    List<Map<String,Object>>queryStorePager(Store store, PageBean pageBean);
 }

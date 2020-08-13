@@ -16,13 +16,19 @@
     from goodstype
     where gtId = #{gtid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="queryGoodstypePager" resultType="com.zking.erp.Share.model.Goodstype">
+      select <include refid="Base_Column_List"/> from goodstype where 1=1
+      <if test="gtype != null">
+        and gType like'%${gtype}%'
+      </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goodstype
     where gtId = #{gtid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Goodstype">
-    insert into goodstype (gtId, gType)
-    values (#{gtid,jdbcType=INTEGER}, #{gtype,jdbcType=VARCHAR})
+    insert into goodstype (gType)
+    values (#{gtype,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zking.erp.Share.model.Goodstype">
     insert into goodstype

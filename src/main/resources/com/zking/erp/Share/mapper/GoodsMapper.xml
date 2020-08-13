@@ -22,15 +22,30 @@
     from goods
     where gId = #{gid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="queryGoodsPager" resultType="java.util.Map">
+      select *from goods g,goodstype gt where g.gtid=gt.gtid
+      <if test="goods.gname != null">
+        and  g.gName like'%${goods.gname}%'
+      </if>
+      <if test="goods.gorigin != null">
+        and  g.gOrigin like'%${goods.gorigin}%'
+      </if>
+      <if test="goods.gproducer != null">
+        and   g.gProducer like'%${goods.gproducer}%'
+      </if>
+      <if test="goods.gtid != null">
+      and   g.gtId=#{goods.gtid}
+      </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
     where gId = #{gid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Goods">
-    insert into goods (gId, gName, gOrigin, 
+    insert into goods (gName, gOrigin,
       gProducer, gUnit, gInprice, 
       gOutprice, gtId)
-    values (#{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, #{gorigin,jdbcType=VARCHAR}, 
+    values (#{gname,jdbcType=VARCHAR}, #{gorigin,jdbcType=VARCHAR},
       #{gproducer,jdbcType=VARCHAR}, #{gunit,jdbcType=VARCHAR}, #{ginprice,jdbcType=REAL}, 
       #{goutprice,jdbcType=REAL}, #{gtid,jdbcType=INTEGER})
   </insert>

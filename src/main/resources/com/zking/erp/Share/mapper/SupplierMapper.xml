@@ -21,15 +21,53 @@
     from supplier
     where supplierId = #{supplierid,jdbcType=INTEGER}
   </select>
+    <select id="querySupplierPager" resultType="java.util.Map">
+      select *from supplier s,goodstype gs where s.sType=gs.gtId
+      <if test="supplier.suname != null">
+      and  s.suName like'%${supplier.suname}%'
+      </if>
+      <if test="supplier.saddress != null">
+      and  s.sAddress like'%${supplier.saddress}%'
+      </if>
+      <if test="supplier.scontact != null">
+       and  s.sContact like'%${supplier.scontact}%'
+      </if>
+      <if test="supplier.stel != null">
+      and   s.sTel like'%${supplier.stel}%'
+      </if>
+      <if test="supplier.stype !='' ">
+      and  s.sType = #{supplier.stype}
+      </if>
+
+
+    </select>
+  <select id="queryCustomerPager" resultType="java.util.Map">
+        select *from supplier where sType='DESC'
+    <if test="supplier.suname != null">
+      and  suName like'%${supplier.suname}%'
+    </if>
+    <if test="supplier.saddress != null">
+      and  sAddress like'%${supplier.saddress}%'
+    </if>
+    <if test="supplier.scontact != null">
+      and  sContact like'%${supplier.scontact}%'
+    </if>
+    <if test="supplier.stel != null">
+      and   sTel like'%${supplier.stel}%'
+    </if>
+  </select>
+  <select id="querySige" resultType="com.zking.erp.Share.model.Supplier">
+    select *from supplier where suName=#{name}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from supplier
     where supplierId = #{supplierid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zking.erp.Share.model.Supplier">
-    insert into supplier (supplierId, suName, sAddress, 
+    insert into supplier (suName, sAddress,
       sContact, sTel, sEmail, 
       sType)
-    values (#{supplierid,jdbcType=INTEGER}, #{suname,jdbcType=VARCHAR}, #{saddress,jdbcType=VARCHAR}, 
+    values (#{suname,jdbcType=VARCHAR}, #{saddress,jdbcType=VARCHAR},
       #{scontact,jdbcType=VARCHAR}, #{stel,jdbcType=VARCHAR}, #{semail,jdbcType=VARCHAR}, 
       #{stype,jdbcType=VARCHAR})
   </insert>

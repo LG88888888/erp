@@ -1,6 +1,7 @@
 package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Erprole;
+import com.zking.erp.util.PageBean;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface IErproleService {
 
     int updateByPrimaryKey(Erprole record);
 
-    List<Erprole>queryRole();
+    List<Erprole>queryRolePager(PageBean pageBean);
 }

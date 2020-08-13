@@ -1,13 +1,13 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Goods;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-@Repository
-public interface GoodsMapper {
+
+public interface IGoodsService {
     int deleteByPrimaryKey(Integer gid);
 
     int insert(Goods record);
@@ -20,6 +20,6 @@ public interface GoodsMapper {
 
     int updateByPrimaryKey(Goods record);
 
-    List<Map<String,Object>>queryGoodsPager(@Param("goods") Goods goods);
+    List<Map<String,Object>>queryGoodsPager(Goods goods, PageBean pageBean);
 
 }

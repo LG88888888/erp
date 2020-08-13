@@ -14,4 +14,6 @@ public interface DepMapper {
     int updateByPrimaryKeySelective(Dep record);
 
     int updateByPrimaryKey(Dep record);
+
+
 }

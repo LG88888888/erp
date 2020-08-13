@@ -1,6 +1,7 @@
 package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Emp;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface IEmpService {
 
     int updateByPrimaryKey(Emp record);
 
-    Emp queryEmp(@Param("emp") Emp emp);
-    List<Map<String,Object>> query(String  username);
+    Emp queryEmp(Emp emp);
+    List<Map<String,Object>> queryEmpPager(String  username, PageBean pageBean);
 }

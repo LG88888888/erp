@@ -22,6 +22,7 @@ public class CrosFilter implements Filter {
         resp.setHeader("Access-Control-Max-Age", "3600");
         resp.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type, Accept, Origin");
         resp.setHeader("Access-Control-Allow-Credentials", "true");
+
         chain.doFilter(req, resp);
     }
 

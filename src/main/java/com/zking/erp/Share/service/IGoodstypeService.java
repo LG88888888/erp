@@ -1,12 +1,12 @@
-package com.zking.erp.Share.mapper;
+package com.zking.erp.Share.service;
 
 import com.zking.erp.Share.model.Goodstype;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
-public interface GoodstypeMapper {
+
+public interface IGoodstypeService {
     int deleteByPrimaryKey(Integer gtid);
 
     int insert(Goodstype record);
@@ -19,5 +19,5 @@ public interface GoodstypeMapper {
 
     int updateByPrimaryKey(Goodstype record);
 
-    List<Goodstype> queryGoodstypePager(@Param("gtype") String gtype);
+    List<Goodstype> queryGoodstypePager(String gtype, PageBean pageBean);
 }

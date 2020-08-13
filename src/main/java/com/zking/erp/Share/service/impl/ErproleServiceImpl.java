@@ -3,6 +3,7 @@ package com.zking.erp.Share.service.impl;
 import com.zking.erp.Share.mapper.ErproleMapper;
 import com.zking.erp.Share.model.Erprole;
 import com.zking.erp.Share.service.IErproleService;
+import com.zking.erp.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class ErproleServiceImpl implements IErproleService {
     }
 
     @Override
-    public List<Erprole> queryRole() {
-        return erproleMapper.queryRole();
+    public List<Erprole> queryRolePager(PageBean pageBean) {
+        return erproleMapper.queryRolePager(pageBean);
     }
 }

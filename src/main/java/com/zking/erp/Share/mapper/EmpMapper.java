@@ -1,6 +1,7 @@
 package com.zking.erp.Share.mapper;
 
 import com.zking.erp.Share.model.Emp;
+import com.zking.erp.util.PageBean;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,5 @@ public interface EmpMapper {
 
     Emp queryEmp(@Param("emp") Emp emp);
 
-    List<Map<String,Object>>query(@Param("username") String username);
+    List<Map<String,Object>>queryEmpPager(@Param("username") String username);
 }

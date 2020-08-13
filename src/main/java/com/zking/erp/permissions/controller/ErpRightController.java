@@ -9,14 +9,15 @@ import com.zking.erp.Share.service.IErprightService;
 import com.zking.erp.Share.service.IErproleService;
 import com.zking.erp.Share.service.IErprolerightService;
 import com.zking.erp.util.JsonResponseBody;
+import com.zking.erp.util.PageBean;
 import com.zking.erp.util.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +54,7 @@ public class ErpRightController {
     public JsonResponseBody  addroleright(Erproleright roleright){
 
         int i = erprolerightService.addRoleRight(roleright);
-        if(i<1){
+        if(i<0){
             return new JsonResponseBody(ResponseStatus.STATUS_201);
         }
         return new JsonResponseBody(ResponseStatus.STATUS_212);
@@ -61,9 +62,15 @@ public class ErpRightController {
 
     //查询角色信息
     @RequestMapping("/queryRole")
-    public List<Erprole>queryRole(){
+    public Map<String,Object>queryRolePager(HttpServletRequest request){
+        PageBean pb=new PageBean();
+        pb.setRequest(request);
+        List<Erprole> list = erproleService.queryRolePager(pb);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",list);
+        map.put("total",pb.getTotal());
 
-        return erproleService.queryRole();
+        return map;
     }
 
     //修改角色
@@ -71,7 +78,7 @@ public class ErpRightController {
     public JsonResponseBody editRole(Erprole erprole){
 
         int i = erproleService.updateByPrimaryKey(erprole);
-        if(i<1){
+        if(i<0){
             return new JsonResponseBody(ResponseStatus.STATUS_255);
         }
         return new JsonResponseBody(ResponseStatus.STATUS_210);
@@ -82,7 +89,7 @@ public class ErpRightController {
     public JsonResponseBody delRole(Long rid){
 
         int i = erproleService.deleteByPrimaryKey(rid);
-        if(i<1){
+        if(i<0){
             return new JsonResponseBody(ResponseStatus.STATUS_203);
         }
         return new JsonResponseBody(ResponseStatus.STATUS_211);
@@ -93,7 +100,7 @@ public class ErpRightController {
     public JsonResponseBody addRole(Erprole erprole){
 
         int i = erproleService.insert(erprole);
-        if(i<1){
+        if(i<0){
             return new JsonResponseBody(ResponseStatus.STATUS_201);
         }
         return new JsonResponseBody(ResponseStatus.STATUS_212);
@@ -108,10 +115,16 @@ public class ErpRightController {
     }
 
     //用户对应的角色部门信息
-    @RequestMapping("/queryEmpRole")
-    public List<Map<String,Object>>queryEmpRole(String username){
+    @RequestMapping("/queryEmpRolePager")
+    public Map<String,Object>queryEmpRolePager(HttpServletRequest request,String username){
+        PageBean pb=new PageBean();
+        pb.setRequest(request);
+        List<Map<String, Object>> query = empService.queryEmpPager(username,pb);
+        Map<String,Object>map=new HashMap<>();
+        map.put("rows",query);
+        map.put("total",pb.getTotal());
 
-        return empService.query(username);
+        return map;
     }
 
     //用户登录
@@ -119,5 +132,16 @@ public class ErpRightController {
     public Emp login(Emp emp){
 
         return empService.queryEmp(emp);
+    }
+
+    //重置密码
+    @RequestMapping("/editpwd")
+    public JsonResponseBody editpwd(Emp emp){
+
+        int i = empService.updateByPrimaryKeySelective(emp);
+        if(i<0){
+            return new JsonResponseBody(ResponseStatus.STATUS_255);
+        }
+        return new JsonResponseBody(ResponseStatus.STATUS_210);
     }
 }
